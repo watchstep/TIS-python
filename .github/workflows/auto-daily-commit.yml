@@ -1,0 +1,31 @@
+# 해당 워크플로우는 Today I Solved 기록을 남기기 위해 알고리즘 문제를 푼 날마다 자동 커밋해줍니다.
+
+# 워크플로우 이름 지정
+name: Auto Daily Commit
+
+# 아래 jobs가 실행되어야하는 events 정의
+on:
+  schedule:
+    # 매일 UTC+9 기준 0시와 14시에 실행 (한국 기준 9시와 23시에 실행)
+    # 지정한 시간에 정확히 실행되지 않는 경우가 흔함
+    # https://crontab.guru/
+    - cron: '0 0,14 * * *'
+
+jobs:
+  auto-daily-commit:
+    # 사용할 runner
+    runs-on: ubuntu-latest
+    # 실행되는 순서
+    steps:
+    # 다른 사람이 만든 action 사용 ('uses')
+    - uses: actions/checkout@v3
+    - name: Set Current Date
+      run: |
+        echo current_date=$(date +'%Y-%m-%d') >> $GITHUB_ENV
+    - name: Commit & Push
+      run: |
+        git add .
+        git config --local user.email "email"
+        git config --local user.name "name"
+        git commit -m ${{ env.current_date }}
+        git push
