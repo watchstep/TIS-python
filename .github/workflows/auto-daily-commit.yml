@@ -26,7 +26,7 @@ jobs:
       id: check_diff
       run: |
         git add .
-        git diff || echo "changed=true" >> $GITHUB_OUTPUT
+        git diff  --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
     - name: Commit & Push
       if: steps.check_diff.outputs.changed == 'true'
       run: |
