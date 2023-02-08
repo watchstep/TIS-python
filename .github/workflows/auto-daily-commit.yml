@@ -6,10 +6,10 @@ name: Auto Daily Commit
 # 아래 jobs가 실행되어야하는 events 정의
 on:
   schedule:
-    # 매일 UTC+9 기준 0시와 14시에 실행 (한국 기준 9시와 23시에 실행)
+    # 매일 UTC+9 기준 일요일 제외 매일 0시와 14시에 실행 (한국 기준 9시와 23시에 실행)
     # 지정한 시간에 정확히 실행되지 않는 경우가 흔함
     # https://crontab.guru/
-    - cron: '0 0,14 * * *'
+    - cron: '0 0,14 * * 1-6'
 
 jobs:
   auto-daily-commit:
@@ -22,15 +22,11 @@ jobs:
     - name: Set Current Date
       run: |
         echo current_date=$(date +'%Y-%m-%d') >> $GITHUB_ENV
-    - name: Check if there are something to commit
-      id: check_diff
-      run: |
-        git add .
-        git diff  --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
     - name: Commit & Push
-      if: steps.check_diff.outputs.changed == 'true'
       run: |
         git config --local user.email "cathy033077@gmail.com"
         git config --local user.name "kimjuii"
+        git add .
+        git diff
         git commit -m ${{ env.current_date }}
         git push
