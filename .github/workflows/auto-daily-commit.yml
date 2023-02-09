@@ -33,7 +33,7 @@ jobs:
         git diff  --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
 
     - name: Commit & Push
-      if: steps.check_diff.outputs.changed == "true"
+      if: steps.check_diff.outputs.changed == 'true'
       run: |
         git config --local user.email "cathy033077@gmail.com"
         git config --local user.name "kimjuii"
