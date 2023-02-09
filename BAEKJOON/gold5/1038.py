@@ -6,23 +6,22 @@ input = sys.stdin.readline
 N = int(input())
 
 decrease_nums = []
+# 제일 큰 감소하는 수 : 9876543210 10자릿수까지
+for i in range(1, 11):
+  # 0 ~ 9 숫자 조합
+  for combi in combinations(range(0, 10), i):
+    combi = list(combi)
+    combi.sort(reverse=True)
+    decrease_nums.append(int(''.join(map(str, combi))))
 
-digit = [9, (10*9) // 2, (10*9*8) // (3*2), (10*9*8*7) // (4*3*2), (10*9*8*7*6) // (5*4*3*2) , 210, 120, 45, 10, 1]
+decrease_nums.sort()
+
+try:
+  print(decrease_nums[N])
+except:
+  print(-1)
 
 
-# (10*9) // 2 # 45
-# (10*9*8) // (3*2) # 120
-# (10*9*8*7) // (4*3*2) # 210
-# (10*9*8*7*6) // (5*4*3*2) # 252
-# (10*9*8*7*6*5) // (6*5*4*3*2) # 210
-# (10*9*8*7*6*5*4) // (7*6*5*4*3*2) # 120
-
-# m 자리의 감소하는 숫자 개수가 10_C_m
-# 3자리는 2자리보다 숫자 크죠
-# n번째 감소하는 숫자는
-# 자릿수 m이 1일 때부터 해당하는 개수를 뻬주면 된다
-# 18번 째 구한다 n이 1일 때 10
-# 18 - 10 다시 8번 째
 
 
 
