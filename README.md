@@ -9,3 +9,7 @@
 ✏️문제 번호, 푼 날짜, 코드, 티어, 태그, 난도 등 정리
 
 📝 [BAEKJOON](https://watchstep.notion.site/b69111ff65ac4790bc40473ae90bc628?v=432e4b57bf8b49e2a4de8e49119e1cae)
+
+## BOJ
+[![Solved.ac
+프로필](http://mazassumnida.wtf/api/generate_badge?boj={kji9774})](https://solved.ac/{handle})
