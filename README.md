@@ -12,4 +12,4 @@
 
 ## BOJ
 [![Solved.ac
-프로필](http://mazassumnida.wtf/api/generate_badge?boj={kji9774})](https://solved.ac/{handle})
+프로필](http://mazassumnida.wtf/api/generate_badge?boj=kji9774)](https://solved.ac/{handle})
